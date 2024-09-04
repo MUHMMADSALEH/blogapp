@@ -13,7 +13,7 @@ export class AuthController{
         return res.json({status:true,user:newUser});
      
     }  catch(err){
-        return res.status(500).json({status:false,message:err});
+        return res.status(500).json({status:false,message:err.message});
     }
     }
 

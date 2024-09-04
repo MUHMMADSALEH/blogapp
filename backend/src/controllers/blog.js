@@ -8,7 +8,7 @@ export class BlogController{
         return res.status(200).json({status:true,Blog:newBlog});
         
       }catch(err){
-        return res.statu(500).json({status:false,message:err.message});
+        return res.status(500).json({status:false,message:err.message});
       }
     }
 

@@ -1,15 +1,17 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios';
 
 const Signup = () => {
-  const [formData,setFormData]=useState({name:"",username:"",password:""})
-  console.log(formData)
+  const [formData,setFormData]=useState({name:"",username:"",password:""});
+  const navigate=useNavigate();
+
   const hanleclick=async(e)=>{
-    console.log("clicked")
     e.preventDefault();
     const res=await axios.post("http://localhost:3000/api/auth/signup",formData);
-    console.log("Response: ",res)
+    if(res.data.status){
+      navigate("/signin")
+    }
   }
   return (
     <div className="min-h-screen flex items-center justify-center flex-col gap-5  ">

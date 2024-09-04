@@ -1,12 +1,26 @@
-
+import { useState,useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const Blog = () => {
+  const [blog,setBlog]=useState({});
+  const {id}=useParams();
+
+  useEffect(()=>{
+    const fetchBlogs=async()=>{
+      const res=await axios.get(`http://localhost:3000/api/blog/${id}`);
+      if(res.data?.status){
+        setBlog(res.data.blogs);
+      }
+    }
+    fetchBlogs();
+  },[])
   return (
     <div className="px-10 flex flex-col gap-10">
           <img src="https://cdn.pixabay.com/photo/2023/10/10/15/37/motorcycle-8306765_960_720.jpg" alt="image" className="w-screen h-80 object-cover"/>
           <div className="flex flex-col gap-5">
-            <h1 className="font-extrabold text-2xl">Title</h1>
-             <p className="font-extralight">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae dolorum modi esse debitis veniam. Fugiat qui sequi cumque animi blanditiis aspernatur explicabo rem necessitatibus iure. Voluptas dolorum sint id odit!</p>
+            <h1 className="font-extrabold text-2xl">{blog?.title}</h1>
+             <p className="font-extralight">{blog?.content}</p>
           </div>
     </div>
   )
