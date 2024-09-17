@@ -5,6 +5,7 @@ export class AuthController{
 
     
     static singup=async(req,res)=>{
+       
       try{
         const user=await User.findOne({username:req.body.username});
         if(user)return res.status(400).json({status:false,message:"User aleardy exist"});
@@ -18,8 +19,10 @@ export class AuthController{
     }
 
     static singin=async(req,res)=>{
+        console.log("from sign in :",req.body)
         try{
            const user=await User.findOne({username:req.body.username});
+           console.log("user from db  :",user)
            if(!user) return res.status(400).json({status:false,message:"Invalid Credentials"});
            const result=await Utils.validatePassword(req.body.password,user.password);
            if(!result)return res.status(400).json({status:false,message:"Invalid Credentials"});
