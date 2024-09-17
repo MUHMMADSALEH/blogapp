@@ -18,5 +18,5 @@ app.use("/api/blog",blogRouter);
 
 app.listen(port,()=>{
     connectToDb();
-console.log(`Server is running on: ${port}`);
+console.log(`Server is running on:  ${port}`);
 })
