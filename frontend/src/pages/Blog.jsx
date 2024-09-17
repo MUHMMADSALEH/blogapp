@@ -4,11 +4,12 @@ import { useParams } from "react-router-dom";
 
 const Blog = () => {
   const [blog,setBlog]=useState({});
-  const {id}=useParams();
+  
+  
 
   useEffect(()=>{
     const fetchBlogs=async()=>{
-      const res=await axios.get(`http://localhost:3000/api/blog/${id}`);
+      const res=await axios.get(`/api/blog`);
       if(res.data?.status){
         setBlog(res.data.blogs);
       }

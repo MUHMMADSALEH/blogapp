@@ -4,16 +4,18 @@ import { useEffect, useState } from "react"
 import axios from "axios";
 
 const Home = () => {
+ 
   const [blogs,setBlogs]=useState([]);
   useEffect(()=>{
     const fetchBlogs=async()=>{
-      const res=await axios.get("http://localhost:3000/api/blog");
+      const res=await axios.get("/api/blog");
       if(res.data?.status){
         setBlogs(res.data.blogs);
       }
     }
     fetchBlogs();
   },[])
+  // console.log("blogs  home:",blogs)
   return (
     <div className="px-10 flex flex-col gap-5">
      { 
