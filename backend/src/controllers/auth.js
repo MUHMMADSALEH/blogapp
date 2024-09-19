@@ -19,7 +19,7 @@ export class AuthController{
     }
 
     static singin=async(req,res)=>{
-        console.log("from sign in :",req.body)
+        // console.log("from sign in :",req.body)
         try{
            const user=await User.findOne({username:req.body.username});
            console.log("user from db  :",user)

@@ -6,8 +6,9 @@ import Blog from "./pages/Blog"
 import  Signin  from "./pages/Signin"
 import Signup from "./pages/Signup"
 import CreateBlog from "./pages/CreateBlog"
-import { UserContexts } from "./contexts/AuthContext"
+import { Context } from "./contexts/Context"
 import { useContext } from "react"
+
 const Layout=()=>{
   return (
     <div className="flex flex-col gap-8 ">
@@ -17,7 +18,7 @@ const Layout=()=>{
   )
 }
 const App = () => {
-  const {user}=useContext(UserContexts)
+  const {user}=useContext(Context)
 
   const router=createBrowserRouter([
     {
@@ -26,15 +27,15 @@ const App = () => {
       children:[
         {
           path:"/",
-          element:user?.username?<Home/>:<Signin/>
+          element:user?<Home/>:<Signin/>
         },
         {
           path:"/:id",
-          element:user?.username?<Blog/>:<Signin/>
+          element:user?<Blog/>:<Signin/>
         },
         {
          path:"/create",
-         element:<CreateBlog/>
+         element:user?<CreateBlog/>:<Signin/>
         }
       ]
     },

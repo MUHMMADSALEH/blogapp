@@ -37,6 +37,7 @@ export class BlogController{
          }
     }
     static delete=async(req,res)=>{
+        console.log("from delete",req.params.id)
         try{
             const updatedblog=await Blog.findByIdAndDelete({_id:req.params.id});
             return res.status(200).json({status:true,updatedblog});

@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom"
 import User from "./User"
 import { useContext, useEffect, useState } from "react"
-import AuthContext,{ UserContexts } from "../contexts/AuthContext"
+import { Context } from "../contexts/Context"
 import axios from "axios"
 
 
 const Header = () => {
 
-  const {user,Logout,setUser}=useContext(UserContexts);
-  // console.log("User context: ",user)
-  // console.log("logout",Logout)
-  // console.log("setUser",setUser)
-  // console.log("AuthContext",AuthContext)
+  const {user,dispatch}=useContext(Context);
+ const handleClick=(e)=>{
+e.preventDefault()
+dispatch({type:"LOGOUT"});
+ }
 
   
   return (
@@ -19,7 +19,7 @@ const Header = () => {
       <span className="text-2xl font-extrabold">Blog Application</span>
       <div className="flex gap-3 items-center">
        <Link to={"/create"} className="font-bold">Add Blog</Link>
-      <button  onClick={Logout} className="bg-white text-blue-600 rounded p-2">{ user?.username?"Log Out":"Log in"}</button>
+      <button onClick={handleClick} className="bg-white text-blue-600 rounded p-2">{ user?"Log Out":"Log in"}</button>
       <User/>
       </div>
     </div>
